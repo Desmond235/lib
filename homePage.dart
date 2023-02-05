@@ -6,7 +6,11 @@ import './transaction.dart';
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
-        id: 'd1', title: 'New Phone', amount: 70.00, date: DateTime.now()),
+        id: 'd1', 
+        title: 'New Phone', 
+        amount: 70.00, 
+        date: DateTime.now()
+    ),
     Transaction(
         id: 'd2',
         title: 'Weekly Groceries',
@@ -50,11 +54,10 @@ class MyHomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Text(
                           tx.amount.toString(),
-                          style: const  TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple
-                          ),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.purple),
                         ),
                       ),
                       Column(
@@ -69,10 +72,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                           Text(
                             tx.date.toString(),
-                            style: TextStyle(
-                              color: Colors.grey.shade700
-
-                            ),
+                            style: TextStyle(color: Colors.grey.shade700),
                           ),
                         ],
                       )

@@ -2,15 +2,12 @@
 
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
-        id: 'd1', 
-        title: 'New Phone', 
-        amount: 70.00, 
-        date: DateTime.now()
-    ),
+        id: 'd1', title: 'New Phone', amount: 70.00, date: DateTime.now()),
     Transaction(
         id: 'd2',
         title: 'Weekly Groceries',
@@ -28,14 +25,32 @@ class MyHomePage extends StatelessWidget {
           title: const Text('Flutter App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 5),
+            // ignore: sized_box_for_whitespace
             Container(
               width: double.infinity,
-              child: Card(
+              child: const Card(
                 color: Colors.blue,
                 child: Text('CHART!'),
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Tile'),
+                    ),
+                    TextField(decoration: InputDecoration(labelText: 'Amount'),),
+                    TextButton(onPressed: (){},
+                     child: Text('Add Transaction',style: TextStyle(color:Colors.purple),),),
+                  ],
+                ),
               ),
             ),
             Column(
@@ -44,8 +59,8 @@ class MyHomePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
                             border: Border.all(
                           color: Colors.purple,
@@ -53,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                         )),
                         padding: const EdgeInsets.all(10),
                         child: Text(
-                          tx.amount.toString(),
+                          '\$${tx.amount}',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -71,7 +86,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            tx.date.toString(),
+                            DateFormat.yMMMMd().format(tx.date),
                             style: TextStyle(color: Colors.grey.shade700),
                           ),
                         ],

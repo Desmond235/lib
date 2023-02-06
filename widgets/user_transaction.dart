@@ -4,10 +4,10 @@ import './new_transaction.dart';
 import '../models/transaction.dart';
 
 class UserTransctions extends StatefulWidget {
-  UserTransctions({Key? key}) : super(key: key);
+  const UserTransctions({Key? key}) : super(key: key);
 
   @override
-  _UserTransctionsState createState() => _UserTransctionsState();
+  State<StatefulWidget> createState() => _UserTransctionsState();
 }
 
 class _UserTransctionsState extends 
@@ -15,7 +15,10 @@ State<UserTransctions> {
 
    final List<Transaction> _userTransactions = [
     Transaction(
-        id: 'd1', title: 'New Phone', amount: 70.00, date: DateTime.now()),
+        id: 'd1', 
+        title: 'New Phone',
+         amount: 70.00, 
+         date: DateTime.now()),
     Transaction(
         id: 'd2',
         title: 'Weekly Groceries',

@@ -1,27 +1,72 @@
 // ignore_for_file: file_names
 
+import './transaction_list.dart';
+
+import '../models/transaction.dart';
+import './new_transaction.dart';
 import 'package:flutter/material.dart';
-import './user_transaction.dart';
 
 
 
 // ignore: must_be_immutable
-class MyHomePage extends StatelessWidget {
-  MyHomePage({
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({
     super.key,
   });
 
- 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   // String? titleInput;
-  // String? amountInput;
-  final tileController = TextEditingController();
-  final amountController = TextEditingController();
+ 
+
+  final List<Transaction> _userTransactions = [
+    Transaction(
+        id: 'd1', 
+        title: 'New Phone',
+         amount: 70.00, 
+         date: DateTime.now()),
+    Transaction(
+        id: 'd2',
+        title: 'Weekly Groceries',
+        amount: 14.56,
+        date: DateTime.now()),
+  ];
+
+  void _addNewTransaction(String title, double amount){
+    final newTx = Transaction(
+      id: DateTime.now().toString(),
+       title: title,
+        amount: amount,
+         date: DateTime.now());
+
+         setState(() {
+           _userTransactions.add(newTx);
+         });
+  }
+
+  void _startAddNewTransaction(BuildContext ctx){
+    showModalBottomSheet(context: ctx , builder:(_){
+      return GestureDetector(
+        onTap: (){},
+        behavior: HitTestBehavior.opaque ,
+        child: NewTransaction(addTX: _addNewTransaction) ,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Flutter App'),
+          actions: [
+            IconButton(onPressed:  ()=>_startAddNewTransaction(context),
+             icon: Icon(Icons.add)
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -36,11 +81,15 @@ class MyHomePage extends StatelessWidget {
                     child: Text('CHART!'),
                   ),
                 ),
-                UserTransctions()
+                TransactionList(transactions: _userTransactions)
               ],
             ),
         ),
-
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: ()=>_startAddNewTransaction(context),
+          child: Icon(Icons.add),
+        ),
      );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
-  NewTransaction({Key? key, required this.addTX}) : super(key: key);
+ const NewTransaction({Key? key, required this.addTX}) : super(key: key);
 
   final Function addTX;
 
@@ -11,7 +11,6 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
 
   void submitData() {

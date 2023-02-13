@@ -1,12 +1,9 @@
 // ignore_for_file: file_names
 
 import './transaction_list.dart';
-
 import '../models/transaction.dart';
 import './new_transaction.dart';
 import 'package:flutter/material.dart';
-
-
 
 // ignore: must_be_immutable
 class MyHomePage extends StatefulWidget {
@@ -19,9 +16,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // String? titleInput;
- 
-
+  
   final List<Transaction> _userTransactions = [
     Transaction(
         id: 'd1', 
@@ -88,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: ()=>_startAddNewTransaction(context),
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
      );
   }

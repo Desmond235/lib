@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text('Flutter App'),
           actions: [
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
-             icon: Icon(Icons.add)
+             icon:const Icon(Icons.add)
             )
           ],
         ),

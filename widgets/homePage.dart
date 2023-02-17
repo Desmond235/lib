@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter App'),
+          title: const Text('Personal expenses'),
           actions: [
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
              icon:const Icon(Icons.add)

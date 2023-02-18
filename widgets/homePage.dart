@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Personal expenses'),
+          
           actions: [
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
              icon:const Icon(Icons.add)
@@ -71,9 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ignore: sized_box_for_whitespace
                 Container(
                   width: double.infinity,
-                  child: const Card(
-                    color: Colors.blue,
-                    child: Text('CHART!'),
+                  child:  Card(
+                    color:Theme.of(context).primaryColor,
+                    child:const  Text('CHART!'),
                   ),
                 ),
                 TransactionList(transactions: _userTransactions)

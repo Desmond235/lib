@@ -35,13 +35,13 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const  InputDecoration(labelText: 'Title'),
               controller: titleController,
               onSubmitted: (_) => submitData()
               // onChanged: (value)=> titleInput = value,
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: const InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData(),
@@ -49,7 +49,7 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             TextButton(
               onPressed: submitData,
-              child: Text(
+              child:const Text(
                 'Add Transaction',
                 style: TextStyle(color: Colors.purple),
               ),

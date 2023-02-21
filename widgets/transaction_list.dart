@@ -11,7 +11,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
     return Container(
-      height: 300,
+      height: 500,
       child: ListView.builder(
         itemBuilder: (ctx, index){
           return Card(
@@ -46,7 +46,7 @@ class TransactionList extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DateFormat.yMMMMd().format(transactions[index].date),
+                      DateFormat.yMMMd().format(transactions[index].date),
                       style: TextStyle(color: Colors.grey.shade700),
                     ),
                   ],

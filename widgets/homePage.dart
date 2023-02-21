@@ -57,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Personal expenses'),
-          
+          elevation: 1,
+          shadowColor: Theme.of(context).shadowColor,
           actions: [
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
              icon:const Icon(Icons.add)
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: double.infinity,
                   child:  Card(
                     color:Theme.of(context).primaryColor,
-                    child:const  Text('CHART!'),
+                    child:const  Text('CHART!',style: TextStyle(color: Colors.white),),
                   ),
                 ),
                 TransactionList(transactions: _userTransactions)
@@ -84,6 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: ()=>_startAddNewTransaction(context),
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: Colors.white,
           child: const Icon(Icons.add),
         ),
      );

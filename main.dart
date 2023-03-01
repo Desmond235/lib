@@ -14,13 +14,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal expenses',
       theme: ThemeData(
-        useMaterial3:  true,
+        useMaterial3: true,
         colorSchemeSeed: Colors.purple,
-        shadowColor: Colors.grey[700]
+        shadowColor: Colors.grey[700],
+        fontFamily: 'QuickSand',
+        appBarTheme: AppBarTheme(
+            titleTextStyle: ThemeData.light().textTheme.copyWith(
+                  titleSmall: const TextStyle(
+                    fontFamily: 'Open sans',fontSize: 20 
+                  )
+            ).bodySmall
+        ),
       ),
       home: const MyHomePage(),
-      debugShowCheckedModeBanner: false ,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-

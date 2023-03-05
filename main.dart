@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
             titleTextStyle: ThemeData.light().textTheme.copyWith(
                   titleSmall: const TextStyle(
-                    fontFamily: 'Open sans',fontSize: 20 
+                    fontFamily: 'OpenSans',
                   )
-            ).bodySmall
+            ).bodyLarge
         ),
       ),
       home: const MyHomePage(),

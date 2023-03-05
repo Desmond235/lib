@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Personal expenses'),
+          title: const Text('Personal expenses',style: TextStyle(fontSize: 20),),
           elevation: 1,
           shadowColor: Theme.of(context).shadowColor,
           actions: [

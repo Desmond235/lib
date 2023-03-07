@@ -18,16 +18,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   
   final List<Transaction> _userTransactions = [
-    Transaction(
-        id: 'd1', 
-        title: 'New Phone',
-         amount: 70.00, 
-         date: DateTime.now()),
-    Transaction(
-        id: 'd2',
-        title: 'Weekly Groceries',
-        amount: 14.56,
-        date: DateTime.now()),
+    // Transaction(
+    //     id: 'd1', 
+    //     title: 'New Phone',
+    //      amount: 70.00, 
+    //      date: DateTime.now()),
+    // Transaction(
+    //     id: 'd2',
+    //     title: 'Weekly Groceries',
+    //     amount: 14.56,
+    //     date: DateTime.now()),
   ];
 
   void _addNewTransaction(String title, double amount){
@@ -60,9 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 1,
           shadowColor: Theme.of(context).shadowColor,
           actions: [
+            
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
              icon:const Icon(Icons.add)
             )
+
           ],
         ),
         body: SingleChildScrollView(

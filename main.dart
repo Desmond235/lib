@@ -18,13 +18,22 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.purple,
         shadowColor: Colors.grey[700],
         fontFamily: 'QuickSand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+          titleSmall: const TextStyle(
+            fontFamily: 'OpenSans', 
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
         appBarTheme: AppBarTheme(
             titleTextStyle: ThemeData.light().textTheme.copyWith(
                   titleSmall: const TextStyle(
                     fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold
                   )
             ).bodyLarge
         ),
+        
       ),
       home: const MyHomePage(),
       debugShowCheckedModeBanner: false,

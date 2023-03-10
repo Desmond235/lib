@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widgets/homePage.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Personal expenses',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.purple,
+        colorScheme: const ColorScheme.light().copyWith(
+          primary: Colors.purple
+        ),
         shadowColor: Colors.grey[700],
         fontFamily: 'QuickSand',
         textTheme: ThemeData.light().textTheme.copyWith(

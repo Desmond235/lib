@@ -3,6 +3,7 @@
 import './transaction_list.dart';
 import '../models/transaction.dart';
 import './new_transaction.dart';
+import './chart.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -30,6 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
     //     date: DateTime.now()),
   ];
 
+  Iterable<Transaction> get  _recentTransactions{
+    return _userTransactions.where((transaction){
+      return transaction.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7)
+      ));
+    });
+  }
   void _addNewTransaction(String title, double amount){
     final newTx = Transaction(
       id: DateTime.now().toString(),
@@ -56,13 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Personal expenses',style: TextStyle(fontSize: 20),),
-          elevation: 1,
+          title: const Text('Personal expenses',style: TextStyle(fontSize: 20,color: Colors.white),),
+          backgroundColor: Theme.of(context).primaryColor,
+          elevation: 3,
           shadowColor: Theme.of(context).shadowColor,
           actions: [
             
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
-             icon:const Icon(Icons.add)
+             icon:const Icon(Icons.add),
+             color: Colors.white,
             )
 
           ],
@@ -73,13 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 const SizedBox(height: 5),
                 // ignore: sized_box_for_whitespace
-                Container(
-                  width: double.infinity,
-                  child:  Card(
-                    color:Theme.of(context).primaryColor,
-                    child:const  Text('CHART!',style: TextStyle(color: Colors.white),),
-                  ),
-                ),
+                Chart(recentTransactions:_recentTransactions.toList() ),
                 TransactionList(transactions: _userTransactions)
               ],
             ),
@@ -89,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: ()=>_startAddNewTransaction(context),
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,
+          elevation: 5,
           child: const Icon(Icons.add),
         ),
      );

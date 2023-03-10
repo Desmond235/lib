@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,7 +21,7 @@ class Chart extends StatelessWidget {
         }
       }
       return {
-        'day' : DateFormat.E(weekDay), 
+        'day' : DateFormat.E().format(weekDay), 
         'amount' : totalAmount
         };
      });

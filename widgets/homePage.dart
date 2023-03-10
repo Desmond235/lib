@@ -69,13 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 3,
           shadowColor: Theme.of(context).shadowColor,
+          
+          // add icon to the appbar
           actions: [
-            
             IconButton(onPressed:  ()=>_startAddNewTransaction(context),
              icon:const Icon(Icons.add),
              color: Colors.white,
             )
-
           ],
         ),
         body: SingleChildScrollView(

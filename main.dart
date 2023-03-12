@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             fontSize: 18,
           ),
         ),
+        
         appBarTheme: AppBarTheme(
             titleTextStyle: ThemeData.light().textTheme.copyWith(
                   titleSmall: const TextStyle(

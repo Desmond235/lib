@@ -24,6 +24,7 @@ class TransactionList extends StatelessWidget {
       : ListView.builder(
         itemBuilder: (ctx, index){
           return Card(
+            elevation: 3,
             child: Row(
               children: [
                 Container(
@@ -56,7 +57,8 @@ class TransactionList extends StatelessWidget {
                       style: TextStyle(color: Colors.grey.shade700),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 10,)
               ],
             ),
           );

@@ -8,7 +8,7 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('\$${amountSpent.toStringAsFixed(0)}'),
+        FittedBox(child: Text('\$${amountSpent.toStringAsFixed(0)}')),
         const SizedBox(height: 5,),
         // ignore: sized_box_for_whitespace
         Container(

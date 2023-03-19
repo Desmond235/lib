@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme.light().copyWith(
-          primary: Colors.purple
+          primary: Colors.purple.withOpacity(0.1)
         ),
         shadowColor: Colors.grey[700],
         fontFamily: 'QuickSand',

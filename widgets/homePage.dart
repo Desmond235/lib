@@ -29,12 +29,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ));
     });
   }
-  void _addNewTransaction(String title, double amount){
+  void _addNewTransaction(String title, double amount, DateTime chosenDate){
     final newTx = Transaction(
       id: DateTime.now().toString(),
        title: title,
         amount: amount,
-         date: DateTime.now());
+         date: chosenDate
+         );
 
          setState(() {
            _userTransactions.add(newTx);
@@ -50,7 +51,13 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     });
   }
-
+    
+    //deleting transactions
+  void deleteTransaction( String id){
+    setState(() {
+       _userTransactions.removeWhere((tx) => tx.id == id );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(height: 5),
                 // ignore: sized_box_for_whitespace
                 Chart(recentTransactions:_recentTransactions.toList() ),
-                TransactionList(transactions: _userTransactions)
+                TransactionList(transactions: _userTransactions, deleteTx: deleteTransaction,)
               ],
             ),
         ),

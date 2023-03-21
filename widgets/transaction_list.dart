@@ -40,9 +40,9 @@ class TransactionList extends StatelessWidget {
                       radius: 30,
                       backgroundColor: Colors.red,
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: FittedBox(
-                            child: Text('\$ ${transactions[index].amount}')),
+                            child: Text('\$${transactions[index].amount.toStringAsFixed(2)}')),
                       ),
                     ),
                     title: Text(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
- const NewTransaction({Key? key, required this.addTX}) : super(key: key);
+  const NewTransaction({Key? key, required this.addTX}) : super(key: key);
 
   final Function addTX;
 
@@ -10,19 +11,37 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  DateTime? _selectedDate;
 
-  void submitData() {
-    final enteredTitle = titleController.text;
-    final enteredAmount = double.parse(amountController.text);
-     
-     if(enteredTitle.isEmpty || enteredAmount <=0){
+//  getting user input
+  void _submitData() {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
-     }
-   
+    }
+
     widget.addTX(enteredTitle, enteredAmount);
     Navigator.of(context).pop();
+  }
+
+  void _showDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -35,23 +54,50 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              decoration: const  InputDecoration(labelText: 'Title'),
-              controller: titleController,
-              onSubmitted: (_) => submitData()
-              // onChanged: (value)=> titleInput = value,
-            ),
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData()
+                // onChanged: (value)=> titleInput = value,
+                ),
             TextField(
               decoration: const InputDecoration(labelText: 'Amount'),
-              controller: amountController,
+              controller: _amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
               // onChanged:(value) => amountInput = value,
             ),
-            TextButton(
-              onPressed: submitData,
-              child:const Text(
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(_selectedDate == null
+                        ? 'No date chosen'
+                        : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}'
+                                   ),
+                  ),
+                 const SizedBox(width: 5,),
+                  TextButton(
+                    onPressed: _showDatePicker,
+                    style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).primaryColor),
+                    child: const Text(
+                      'Choose Date',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _submitData,
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor:
+                      Theme.of(context).textTheme.labelLarge!.color,
+                  padding: const EdgeInsets.all(15)),
+              child: const Text(
                 'Add Transaction',
-                style: TextStyle(color: Colors.red),
               ),
             ),
           ],

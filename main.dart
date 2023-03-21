@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/homePage.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -17,29 +16,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme.light().copyWith(
-          primary: Colors.black45
-          .withOpacity(0.8),
-          secondary: Colors.amber
+            primary: Colors.purple,
         ),
         shadowColor: Colors.grey[700],
         fontFamily: 'QuickSand',
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleSmall: const TextStyle(
-            fontFamily: 'OpenSans', 
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        
+              titleSmall: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+              labelLarge: const TextStyle(color: Colors.white)
+            ),
         appBarTheme: AppBarTheme(
-            titleTextStyle: ThemeData.light().textTheme.copyWith(
-                  titleSmall: const TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontWeight: FontWeight.bold
-                  )
-            ).bodyLarge
-        ),
-        
+            titleTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                    titleSmall: const TextStyle(
+                        fontFamily: 'OpenSans', fontWeight: FontWeight.bold))
+                .bodyLarge),
       ),
       home: const MyHomePage(),
       debugShowCheckedModeBanner: false,

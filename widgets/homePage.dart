@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: const Text('Personal expenses',style: TextStyle(fontSize: 20,color: Colors.white),),
           backgroundColor: Theme.of(context).primaryColor,
-          elevation: 1,
+          elevation: 0,
           shadowColor: Theme.of(context).shadowColor,
           
           // add icon to the appbar

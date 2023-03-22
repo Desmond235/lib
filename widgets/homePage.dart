@@ -17,83 +17,93 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   final List<Transaction> _userTransactions = [];
-  
+
   // getter for recent Transaction
-  Iterable<Transaction> get  _recentTransactions{
-    return _userTransactions.where((transaction){
-      return transaction.date.isAfter(
-        DateTime.now().subtract(
-          const Duration(days: 7)
-      ));
+  Iterable<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) {
+      return transaction.date
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)));
     });
   }
-  void _addNewTransaction(String title, double amount, DateTime chosenDate){
+
+// Function for adding new transaction
+  void _addNewTransaction(String title, double amount, DateTime chosenDate) {
     final newTx = Transaction(
-      id: DateTime.now().toString(),
-       title: title,
+        id: DateTime.now().toString(),
+        title: title,
         amount: amount,
-         date: chosenDate
-         );
+        date: chosenDate);
 
-         setState(() {
-           _userTransactions.add(newTx);
-         });
-  }
-
-  void _startAddNewTransaction(BuildContext ctx){
-    showModalBottomSheet(context: ctx , builder:(_){
-      return GestureDetector(
-        onTap: (){},
-        behavior: HitTestBehavior.opaque ,
-        child: NewTransaction(addTX: _addNewTransaction) ,
-      );
-    });
-  }
-    
-    //deleting transactions
-  void deleteTransaction( String id){
     setState(() {
-       _userTransactions.removeWhere((tx) => tx.id == id );
+      _userTransactions.add(newTx);
     });
   }
+
+// modal bottom sheet
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return GestureDetector(
+            onTap: () {},
+            behavior: HitTestBehavior.opaque,
+            child: NewTransaction(addTX: _addNewTransaction),
+          );
+        });
+  }
+
+  //deleting transactions
+  void deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Personal expenses',style: TextStyle(fontSize: 20,color: Colors.white),),
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 0,
-          shadowColor: Theme.of(context).shadowColor,
-          
-          // add icon to the appbar
-          actions: [
-            IconButton(onPressed:  ()=>_startAddNewTransaction(context),
-             icon:const Icon(Icons.add),
-             color: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Personal expenses',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+        elevation: 0,
+        shadowColor: Theme.of(context).shadowColor,
+
+        // add icon to the appbar
+        actions: [
+          IconButton(
+            onPressed: () => _startAddNewTransaction(context),
+            icon: const Icon(Icons.add),
+            color: Colors.white,
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 5),
+            // ignore: sized_box_for_whitespace
+            Chart(recentTransactions: _recentTransactions.toList()),
+            TransactionList(
+              transactions: _userTransactions,
+              deleteTx: deleteTransaction,
             )
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 5),
-                // ignore: sized_box_for_whitespace
-                Chart(recentTransactions:_recentTransactions.toList() ),
-                TransactionList(transactions: _userTransactions, deleteTx: deleteTransaction,)
-              ],
-            ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: ()=>_startAddNewTransaction(context),
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          elevation: 5,
-          child: const Icon(Icons.add),
-        ),
-     );
+      ),
+      
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _startAddNewTransaction(context),
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
+        elevation: 5,
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }

@@ -53,7 +53,8 @@ class Chart extends StatelessWidget {
                   amountPer: totalSpending == 0.0
                       ? 0.0
                       : (element['amount'] as double) / totalSpending,
-                  amountSpent: element['amount'] as double),
+                  amountSpent: element['amount'] as double
+              ),
             );
           }).toList(),
         ),

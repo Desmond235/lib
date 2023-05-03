@@ -71,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
               colors: [
                 Colors.purple,
                 Colors.red

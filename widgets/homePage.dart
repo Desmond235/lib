@@ -68,7 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
           'Personal expenses',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
-        backgroundColor: Theme.of(context).primaryColor,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Colors.purple,
+                Colors.red
+              ]
+            )
+          ),
+        ),
         elevation: 0,
         shadowColor: Theme.of(context).shadowColor,
 

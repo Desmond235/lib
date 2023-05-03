@@ -17,7 +17,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
 //  getting user input
   void _submitData() {
-    if(_amountController.text.isEmpty){
+    if (_amountController.text.isEmpty) {
       return;
     }
     final enteredTitle = _titleController.text;
@@ -27,10 +27,11 @@ class _NewTransactionState extends State<NewTransaction> {
       return;
     }
 
-    widget.addTX(enteredTitle, enteredAmount,_selectedDate);
+    widget.addTX(enteredTitle, enteredAmount, _selectedDate);
     Navigator.of(context).pop();
   }
 
+// date picker
   void _showDatePicker() {
     showDatePicker(
             context: context,
@@ -38,7 +39,7 @@ class _NewTransactionState extends State<NewTransaction> {
             firstDate: DateTime(2019),
             lastDate: DateTime.now())
         .then((pickedDate) {
-      if (pickedDate == null ) {
+      if (pickedDate == null) {
         return;
       }
       setState(() {
@@ -77,9 +78,11 @@ class _NewTransactionState extends State<NewTransaction> {
                     child: Text(_selectedDate == null
                         ? 'No date chosen'
                         : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}'
-                                   ),
+                    ),
                   ),
-                 const SizedBox(width: 5,),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   TextButton(
                     onPressed: _showDatePicker,
                     style: TextButton.styleFrom(

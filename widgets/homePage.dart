@@ -62,51 +62,56 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Personal expenses',
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Colors.purple,
-                Colors.red
-              ]
-            )
-          ),
-        ),
-        elevation: 0,
-        shadowColor: Theme.of(context).shadowColor,
-
-        // add icon to the appbar
-        actions: [
-          IconButton(
-            onPressed: () => _startAddNewTransaction(context),
-            icon: const Icon(Icons.add),
-            color: Colors.white,
-          )
-        ],
+    final appBar = AppBar(
+      title: const Text(
+        'Personal expenses',
+        style: TextStyle(fontSize: 20, color: Colors.white),
       ),
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+          colors: [Colors.purple, Colors.red],
+        )),
+      ),
+      // add icon to the appbar
+      actions: [
+        IconButton(
+          onPressed: () => _startAddNewTransaction(context),
+          icon: const Icon(Icons.add),
+          color: Colors.white,
+        )
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 5),
             // ignore: sized_box_for_whitespace
-            Chart(recentTransactions: _recentTransactions.toList()),
-            TransactionList(
-              transactions: _userTransactions,
-              deleteTx: deleteTransaction,
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                    0.3,
+                child: Chart(recentTransactions: _recentTransactions.toList()
+                )
+              ),
+            // ignore: sized_box_for_whitespace
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                  0.7,
+              child: TransactionList(
+                transactions: _userTransactions,
+                deleteTx: deleteTransaction,
+              ),
             )
           ],
         ),
       ),
-      
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () => _startAddNewTransaction(context),

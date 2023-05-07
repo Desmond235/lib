@@ -19,6 +19,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [];
 
+  bool _showChart = false;
   // getter for recent Transaction
   Iterable<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
@@ -62,6 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    //checking orientation of the app
+    final isLnScape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: const Text(
         'Personal expenses',
@@ -84,23 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
         )
       ],
     );
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 5),
-            // ignore: sized_box_for_whitespace
-            Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
-                    0.3,
-                child: Chart(recentTransactions: _recentTransactions.toList()
-                )
-              ),
-            // ignore: sized_box_for_whitespace
-            Container(
+
+    // txList
+    final txList = Container(
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
                   0.7,
@@ -108,7 +99,52 @@ class _MyHomePageState extends State<MyHomePage> {
                 transactions: _userTransactions,
                 deleteTx: deleteTransaction,
               ),
-            )
+            );
+    return Scaffold(
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+
+            // landscape mode 
+             if(isLnScape) Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Show chart'),
+                Switch(value: _showChart, onChanged:(value){
+                  setState(() {
+                    _showChart = value;
+                  });
+                } )
+              ],
+            ),
+            const SizedBox(height: 5),
+
+            // portrait mode
+            if(!isLnScape) Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                    0.3,
+                child: Chart(recentTransactions: _recentTransactions.toList()
+                )
+              ),
+
+              if(!isLnScape)txList,
+            
+           
+            // landscape mode
+            if (isLnScape)_showChart 
+             // ignore: sized_box_for_whitespace
+           ? Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                    0.7,
+                child: Chart(recentTransactions: _recentTransactions.toList()
+                )
+              )
+            // ignore: sized_box_for_whitespace
+           : txList
           ],
         ),
       ),
